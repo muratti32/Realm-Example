@@ -1,11 +1,10 @@
 
+# React Native Realm Veritabanı kullanım örneğini 
 # React Native Realm Database usage example.
 
-# React Native Realm Veritabanı kullanım örneği.
 
-
-|---|---|
-| <img src="https://github.com/muratti32/Realm-Example/blob/master/img/ios.gif" width="150" />  |  <img src="https://github.com/muratti32/Realm-Example/blob/master/img/android.gif" width="150" /> |
+|   |   |
+| <img src="https://github.com/muratti32/Realm-Example/blob/master/img/ios.gif" width="175" />  |  <img src="https://github.com/muratti32/Realm-Example/blob/master/img/android.gif" width="175" /> |
 |  **IOS Version :** <br> | **Android Version :**   |
 
 
