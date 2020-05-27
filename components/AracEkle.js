@@ -1,22 +1,30 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useRef} from 'react'
 import { StyleSheet, Text, View,TextInput,FlatList } from 'react-native'
 
 import MyButton from './button'
-import Icon from 'react-native-vector-icons/Feather';
-
 import {colors} from '../global_vars'
 
+import Icon from 'react-native-vector-icons/Feather';
 
 
 const AracEkle = ({navigation,route}) => {
 
+    Icon.loadFont()
+
+    //TextInput lara yazılan değerleri kontrol etmek için kullanılan state ler.
     const [makeValue, onChangeMake] = useState();
     const [modelValue, onChangeModel] = useState();
     const [milesValue, onChangeMiles] = useState();
 
+    //Tablaya eklenen arabaları aşağıya listelemek için kullanılacak FlatList verilerini tutan state
     const [carList,setCarList] = useState();
 
+    //Ana component'te oluşturulan realm nesnesi burada kullanılıcak
     const realm = route.params;
+
+    // Component'teki tüm bileşenler yüklendikten sonra işlemlerin yapılması için kulllanılan kontrol değişkeni
+    // bunu kullanmazsak warning veriyor
+    const isComponentMounted = useRef(true);
 
     const ListItem = ({item}) => {
         return (
@@ -33,10 +41,16 @@ const AracEkle = ({navigation,route}) => {
     useEffect(() => {
        //Veritabanına eklenen arabaları liste olarak 
         //göstermek için kullanılan state
-        setCarList(realm?.objects('Car'))
-        realm.addListener('change', () => {
+        if(isComponentMounted.current)
+        {
+            setCarList(realm?.objects('Car'))
+            realm.addListener('change', () => {
             setCarList(realm?.objects('Car'))
         });
+        }
+        return () => {
+            isComponentMounted.current = false
+        }
     },[])
 
 
@@ -85,7 +99,7 @@ const AracEkle = ({navigation,route}) => {
 
 
             <MyButton onPress={() => aracEkle()} my={2} bg={colors.mavi} height={33}>
-                <Text>Araç ekle</Text>
+                <Text>Add Car</Text>
 
 
             </MyButton>

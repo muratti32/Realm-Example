@@ -11,7 +11,7 @@ const ListItem = ({item,aracSecfunc}) => {
     return (
         <View style={styles.listItem}>
             <MyButton onPress={() => aracSecfunc(item)}>
-                <Text style={styles.listItemText}>{item.make} {item.model}</Text>
+                <Text style={styles.aracSecinizText}>{item.make} {item.model}</Text>
             </MyButton>
         </View>
     );
@@ -21,7 +21,7 @@ const ListItem = ({item,aracSecfunc}) => {
 const PersonelEkleSayfasiAracSecAltMenu = ({carList,aracSecfunc}) => {
     return (
         <View style={styles.flatlist}>
-            <Text style={styles.aracSecinizText}>Araç Seçiniz</Text>
+            <Text style={styles.aracSecinizBaslik}>Araç Seçiniz</Text>
                 <FlatList
                 style={styles.flatlist}
                     data={carList}
@@ -41,6 +41,11 @@ const styles = StyleSheet.create({
         fontSize:19,
         alignSelf:"center",
         fontWeight:"500" ,
+    },
+    aracSecinizBaslik:{
+        fontSize:23,
+        alignSelf:"center",
+        fontWeight:"900" ,
     },
     listItem : {
         justifyContent: 'space-between',

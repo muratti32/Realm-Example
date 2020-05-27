@@ -7,6 +7,9 @@ import {vars,colors} from '../global_vars'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const CardButton = ({props,title,handleClick,iconName}) => {
+
+  Icon.loadFont()
+
     return (
       <MyButton onPress={() => handleClick()} alignItems="flex-start" >
 

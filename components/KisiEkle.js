@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react'
-import { StyleSheet, Text, View,TextInput,FlatList,Button } from 'react-native'
+import { StyleSheet, Text, View,TextInput,FlatList,Alert } from 'react-native'
 import RBSheet from "react-native-raw-bottom-sheet";
 
 import MyButton from './button'
@@ -10,6 +10,8 @@ import PersonelEkleSayfasiAracSecAltMenu from './PersonelEkleSayfasiAracSecAltMe
 
 
 const KisiEkle = ({navigation,route}) => {
+
+    Icon.loadFont()
 
     const [nameValue, onChangeName] = useState();
     const [phoneValue, onChangePhone] = useState();
@@ -60,7 +62,8 @@ const KisiEkle = ({navigation,route}) => {
 
     const deletePerson = (item) => {
         const Person = realm?.objects('Person')
-        const SelectedPerson1 = Person.filtered(`name = "${item.name}" AND phone = "${item.phone}" AND cars.make = [c] "${item.cars.make}"`);
+        //const SelectedPerson1 = Person.filtered(`name = "${item.name}" AND phone = "${item.phone}" AND cars.make = [c] "${item?.cars.make}"`);
+        const SelectedPerson1 = Person.filtered(`name = "${item.name}" AND phone = "${item.phone}"`);
 
         realm.write(() => {
             realm.delete(SelectedPerson1)
@@ -72,14 +75,45 @@ const KisiEkle = ({navigation,route}) => {
     // bir kişiye biren çok araç eklemek için 
     // Person tablosunda cars yerine cars[] yapılmalıydı
     const kisiEkle = () => {
-        realm.write(() => {
-            realm.create('Person', {
-            name: nameValue,
-            phone: phoneValue,
-            cars: selectedCar[0],
-        });
-        })
+        if(selectedCar?.length !== undefined)
+        {
+            realm.write(() => {
+                realm.create('Person', {
+                    name: nameValue,
+                    phone: phoneValue,
+                    cars: selectedCar[0],
+                });
+            })
+        }else
+        {
+            alert("Önce Araç Seçmelisiniz")
+        }
+
+        
     }
+
+
+    const alert = (text) => {
+        Alert.alert(
+            "Kayıt Ekleme Durumu",
+            text,
+            [
+                {
+                    text: "OK",
+                    onPress : () => {}
+                },
+                {
+                    text: "Cancel",
+                    onPress : () => {},
+                    style: "cancel"
+                }
+            ],
+            {
+                cancelable : false
+            }
+        )
+    }
+    
     
 
     const altMenuAc = () => {
@@ -118,16 +152,16 @@ const KisiEkle = ({navigation,route}) => {
                 value={phoneValue}
                 />
             <View style={styles.aracSeciniz}>
-                <Text style={{width:"50%"}}>{selectedCar ? getSelectedCarName() : "Araç"} </Text>
+                <Text style={{width:"50%"}}>{selectedCar ? getSelectedCarName() : "Car "} </Text>
                 <MyButton onPress={() => altMenuAc()} width="50%" height={30} bg={colors.mavi}>
-                    <Text>Araç seçiniz</Text>
+                    <Text>Select Car</Text>
                 </MyButton>
                 
             </View>
 
 
             <MyButton onPress={() => kisiEkle()} my={2} bg={colors.mavi} height={33}>
-                <Text>Kişi ekle</Text>
+                <Text>Add Person</Text>
             </MyButton>
 
             <View style={styles.flatlist}>
@@ -137,7 +171,7 @@ const KisiEkle = ({navigation,route}) => {
                     renderItem={({ item }) => 
                         <ListItem item={item}/>
                     }
-                    keyExtractor={item => (item.name + item.phone+ item.cars.make)}
+                    keyExtractor={item => (item.name + item.phone)}
                 />
             </View>
             <RBSheet

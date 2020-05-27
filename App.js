@@ -1,5 +1,4 @@
 import React from 'react';
-import {View} from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -12,10 +11,10 @@ import VeriGoster from './components/VeriGoster'
 import {vars,colors} from './global_vars';
 
 const App = () => {
-  //Icon.loadFont()
 
   const Stack = createStackNavigator();
 
+  //Her bir stack screen için aynı headerOption kullanmak için önceden tanımladık
   const headerOptions = (title) => {
     return (
       {
@@ -40,23 +39,23 @@ const App = () => {
         <Stack.Screen 
           name={vars.navigate_kisi_ekle} 
           component={KisiEkle} 
-          options={headerOptions("Kişi Ekle")}
+          options={headerOptions("Add Person")}
         />
 
         <Stack.Screen 
           name={vars.navigate_arac_ekle} 
           component={AracEkle} 
-          options={headerOptions("Araç Ekle")}
+          options={headerOptions("Add Car")}
         />
         <Stack.Screen 
           name={vars.navigate_veri_sil} 
           component={VeriSil} 
-          options={headerOptions("Veri Sil")}
+          options={headerOptions("Delete Items")}
         />
         <Stack.Screen 
           name={vars.navigate_veri_goster} 
           component={VeriGoster} 
-          options={headerOptions("Veri Göster")}
+          options={headerOptions("Browse Items")}
         />
       </Stack.Navigator>
     </NavigationContainer>
