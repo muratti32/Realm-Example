@@ -5,7 +5,8 @@
 
 |   |   |
 |---|---|
-| <img src="https://github.com/muratti32/solidworks-workspace/blob/master/ara_parca/ara_parca11.png" width="200" />  | **Ara_parca :** <br> Spacer used to connect two plates |
+| <img src="https://github.com/muratti32/Realm-Example/blob/master/img/ios.gif" width="400" />  | **IOS Version :** <br>  |
+| <img src="https://github.com/muratti32/Realm-Example/blob/master/img/android.gif" width="400" />  | **IOS Version :** <br>  |
 
 
 MIT License
