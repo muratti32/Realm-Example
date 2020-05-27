@@ -5,8 +5,8 @@
 
 |   |   |
 |---|---|
-| <img src="https://github.com/muratti32/Realm-Example/blob/master/img/ios.gif" width="400" />  | **IOS Version :** <br>  |
-| <img src="https://github.com/muratti32/Realm-Example/blob/master/img/android.gif" width="400" />  | **IOS Version :** <br>  |
+| <img src="https://github.com/muratti32/Realm-Example/blob/master/img/ios.gif" width="200" />  |  <img src="https://github.com/muratti32/Realm-Example/blob/master/img/android.gif" width="200" /> |
+|  **IOS Version :** <br> | **IOS Version :** <br>  |
 
 
 MIT License
