@@ -1,7 +1,7 @@
 
-# React Native Realm Veritabanı kullanım örneğini 
-# React Native Realm Database usage example.
+# React Native Realm DataBase Sample
 
+Example use of the realm database engine
 
 |   |   |
 |---|---|
